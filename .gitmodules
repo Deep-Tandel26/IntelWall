@@ -1,0 +1,3 @@
+[submodule "IntelWall"]
+	path = IntelWall
+	url = https://github.com/nishantsaini55/IntelPolicies.git
