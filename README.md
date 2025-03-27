@@ -1,13 +1,13 @@
 # IntelWall
 
-IntelWall is an intelligent, context-aware endpoint application-based firewall that excels in the following key areas of operation:
+IntelWall is an intelligent, context-aware platform for managing and deploying firewall rules, excelling in the following key areas of operation:
 
 - **Application Access Control**: IntelWall can identify and restrict the access of applications to external networks or hosts.
 - **Cross-Platform Compatibility**: IntelWall is a versatile and ergonomic tool compatible with Windows, Linux, and macOS.
-- **Application-Specific Policies**: IntelWall manages firewall policies for each application running on an endpoint individually.
+- **Application-Specific Rules**: IntelWall manages firewall rules for each application running on an endpoint individually.
 - **IntelBoard Dashboard**: IntelWall's IntelBoard is a smart web console dashboard that provides granular control over each endpoint, including:
   - Restricting domains, IP addresses, and protocols for each application.
-  - Centrally deploying firewall policies by a nodal authority.
+  - Centrally deploying firewall rules by a nodal authority.
 - **Network Monitoring and Alerts**: IntelWall offers WallMin (firewall administrator) the ability to monitor network usage of each application and generate alerts on IntelBoard for any traffic anomalies.
 - **Domain and Protocol Identification**: IntelWall identifies all the domains and protocols that an application on an endpoint is attempting to access.
 - **Dynamic Traffic Allowance**: IntelWall provides the functionality to allow network traffic that is not already permitted via IntelBoard.
