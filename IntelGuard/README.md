@@ -1,29 +1,31 @@
 # IntelGuard
 
-IntelGuard is an intelligent logging tool within IntelWall that collects and analyzes network logs for each application, providing detailed insights and ensuring robust security.
+IntelGuard is an intelligent platform within IntelWall focused on developing and managing robust firewall rules for various operating systems, ensuring comprehensive network security.
 
 ## Key Features
 
-- **Comprehensive Log Collection**: Collects network logs from each application running on an endpoint.
-- **Centralized Log Storage**: Sends collected logs to IntelWall's central server for analysis and storage.
-- **Detailed Insights**: Provides detailed insights into network activities, helping administrators identify and respond to potential security threats.
-- **Anomaly Detection**: Detects anomalies in network traffic and generates alerts for further investigation.
-- **Compliance Reporting**: Helps organizations comply with industry standards and regulations by providing comprehensive logging and reporting capabilities.
+- **Firewall Rules Development**: Develops custom firewall rules for Linux, Windows, and macOS to enhance network security.
+- **Linux Focus for 2024-2025**: For the 2024-2025 period, IntelGuard will focus exclusively on Linux, leveraging the Netfilter framework and iptables firewall system.
+- **Centralized Rule Management**: Provides a centralized interface for managing and deploying firewall rules across multiple endpoints.
+- **Detailed Insights**: Offers insights into firewall performance and network activity, helping administrators optimize security configurations.
+- **Compliance Reporting**: Assists organizations in meeting industry standards and regulations through comprehensive firewall rule management and reporting.
 
 ## Benefits
 
-- **Enhanced Security**: Provides robust security by collecting and analyzing network logs, helping to identify and mitigate potential threats.
-- **Centralized Management**: Centralized log storage and analysis simplify the management of network logs across all endpoints.
-- **Ease of Use**: User-friendly interface makes it easy for administrators to access and analyze network logs.
+- **Enhanced Security**: Strengthens network security by providing tailored firewall rules for various operating systems.
+- **Linux Expertise**: Focused expertise in Linux firewall systems using Netfilter and iptables for the 2024-2025 period.
+- **Centralized Management**: Simplifies the management of firewall rules across all endpoints through a unified interface.
+- **Ease of Use**: User-friendly interface makes it easy for administrators to create, manage, and deploy firewall rules.
 - **Scalability**: Designed to scale with your organization's needs, ensuring consistent security for both small and large enterprises.
-- **Compliance**: Helps organizations comply with industry standards and regulations through comprehensive logging and reporting capabilities.
+- **Compliance**: Helps organizations comply with industry standards and regulations through comprehensive firewall rule management and reporting.
 
 ## Getting Started
 
-1. **Setup**: Ensure IntelGuard is properly configured on each endpoint to collect network logs.
-2. **Log Collection**: Monitor the collection of network logs from each application.
-3. **Centralized Storage**: Verify that logs are being sent to IntelWall's central server for analysis.
-4. **Analyze Logs**: Use the IntelGuard interface to access and analyze network logs, identifying potential security threats and anomalies.
-5. **Generate Reports**: Generate compliance reports as needed to meet industry standards and regulations.
+1. **Setup**: Ensure IntelGuard is properly configured on each endpoint to manage firewall rules.
+2. **Linux Configuration**: For 2024-2025, focus on configuring Linux systems using Netfilter and iptables.
+3. **Rule Development**: Develop and test custom firewall rules tailored to your organization's security needs.
+4. **Centralized Deployment**: Deploy firewall rules across multiple Linux endpoints using the IntelGuard interface.
+5. **Analyze Performance**: Monitor firewall performance and network activity to optimize security configurations.
+6. **Generate Reports**: Generate compliance reports as needed to meet industry standards and regulations.
 
-Experience the power of intelligent logging with IntelGuard, where comprehensive log collection meets detailed analysis and robust security.
+Experience the power of intelligent firewall rule development with IntelGuard, where tailored security meets centralized management and robust compliance.

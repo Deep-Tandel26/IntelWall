@@ -13,12 +13,16 @@ IntelWall is an intelligent, context-aware platform for managing and deploying f
 - **Dynamic Traffic Allowance**: IntelWall provides the functionality to allow network traffic that is not already permitted via IntelBoard.
 - **IntelGuard Logging**: IntelWall's IntelGuard is an intelligent tool that collects network logs of each application and sends them to IntelWall's central server.
 
+## Current Development Focus
+
+For the period 2024-2025, IntelWall will focus exclusively on Linux, leveraging the Netfilter framework and iptables firewall system to develop and deploy robust firewall rules.
+
 ## Additional Features
 
-- **User-Friendly Interface**: IntelWall offers an intuitive and user-friendly interface, making it easy for administrators to manage and configure firewall policies.
+- **User-Friendly Interface**: IntelWall offers an intuitive and user-friendly interface, making it easy for administrators to manage and configure firewall rules.
 - **Real-Time Analytics**: IntelWall provides real-time analytics and insights into network traffic, helping administrators make informed decisions.
 - **Scalability**: IntelWall is designed to scale with your organization's needs, ensuring robust security for both small and large enterprises.
 - **Compliance**: IntelWall helps organizations comply with industry standards and regulations by providing comprehensive logging and reporting capabilities.
 
-Experience the next generation of endpoint security with IntelWall, where intelligent firewall management meets seamless integration and unparalleled control.
+Experience the next generation of firewall rule management with IntelWall, where intelligent rule development meets seamless integration and unparalleled control.
 
