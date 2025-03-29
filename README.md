@@ -2,16 +2,18 @@
 
 IntelWall is an intelligent, context-aware platform for managing and deploying firewall rules, excelling in the following key areas of operation:
 
+IntelWall is not just a platform for creating and managing firewall rules easily; it is also an intelligent tool that generates actionable insights to help administrators develop more secure and effective firewall rules. Additionally, it is a hybrid tool designed to cater to both users and administrators, ensuring flexibility and ease of use for all stakeholders.
+
 - **Application Access Control**: IntelWall can identify and restrict the access of applications to external networks or hosts.
 - **Cross-Platform Compatibility**: IntelWall is a versatile and ergonomic tool compatible with Windows, Linux, and macOS.
 - **Application-Specific Rules**: IntelWall manages firewall rules for each application running on an endpoint individually.
 - **IntelBoard Dashboard**: IntelWall's IntelBoard is a smart web console dashboard that provides granular control over each endpoint, including:
   - Restricting domains, IP addresses, and protocols for each application.
   - Centrally deploying firewall rules by a nodal authority.
-- **Network Monitoring and Alerts**: IntelWall offers WallMin (firewall administrator) the ability to monitor network usage of each application and generate alerts on IntelBoard for any traffic anomalies.
+- **Network Monitoring and Alerts**: IntelWall offers WallMin (firewall administrator) enhanced capabilities to monitor network usage of each application, generate alerts on IntelBoard for any traffic anomalies, and provide detailed insights into bandwidth consumption and application behavior.
 - **Domain and Protocol Identification**: IntelWall identifies all the domains and protocols that an application on an endpoint is attempting to access.
 - **Dynamic Traffic Allowance**: IntelWall provides the functionality to allow network traffic that is not already permitted via IntelBoard.
-- **IntelGuard Logging**: IntelWall's IntelGuard is an intelligent tool that collects network logs of each application and sends them to IntelWall's central server.
+- **IntelGuard Logging**: IntelWall's IntelGuard is an advanced tool that not only collects network logs of each application but also performs intelligent log analysis to detect patterns, anomalies, and potential security threats before sending them to IntelWall's central server.
 
 ## Current Development Focus
 

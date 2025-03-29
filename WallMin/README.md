@@ -1,6 +1,6 @@
 # WallMin
 
-WallMin is the firewall rule management tool within IntelWall, responsible for configuring, managing, and deploying firewall rules, monitoring network activities, and responding to alerts.
+WallMin is the administrator of firewall rule management within IntelWall, responsible for configuring, managing, and deploying firewall rules, monitoring network activities, and responding to alerts.
 
 ## Key Features
 
@@ -12,7 +12,7 @@ WallMin is the firewall rule management tool within IntelWall, responsible for c
 
 ## User Roles
 
-- **Firewall Administrator**: Responsible for configuring and managing firewall rules, monitoring network activities, and responding to alerts.
+- **Firewall Administrator**: WallMin acts as the primary administrator, responsible for configuring and managing firewall rules, monitoring network activities, and responding to alerts.
 - **Nodal Authority**: Central authority responsible for deploying and enforcing firewall rules across all endpoints.
 
 ## Benefits
