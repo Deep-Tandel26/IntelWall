@@ -1,0 +1,25 @@
+[project]
+name = "intelwall-cli"
+version = "0.1.0"
+description = "This is IntelWall's Command Line Interface to manage firewall rules. We currently support only Linux."
+authors = [
+    {name = "nishantsaini55", email = "nishantsaini5556@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click (>=8.1.8,<9.0.0)"
+]
+packages = [
+    { include = "IntelWall_CLI" }  # Ensure the package folder matches the actual folder name.
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false  # Disable package mode if you only want dependency management.
+
+[tool.poetry.scripts]
+intelwall-cli = "IntelWall_CLI.scripts.main:CLI"  #Ensure the script path matches the actual file structure.
