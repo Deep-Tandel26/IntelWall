@@ -10,7 +10,7 @@ from User_Authentication import User_authorization
 console = Console()
 
 # Mock database for storing user data
-user_database = {"admin": {"username": "admin", "password": "admin123"}, "users": []}
+user_database = {"admin": {"username": "admin", "password": "admin123"}, "users": {"username": "testuser", "password": "testpass"}}
 
 # Mock firewall rules database
 firewall_rules = {"chains": {}, "tables": {}}
