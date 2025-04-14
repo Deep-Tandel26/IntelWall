@@ -117,7 +117,11 @@ def login():
     else:
         valid = any(u for u in user_database["users"] if u["username"] == username and u["password"] == password)
     if valid:
-        display_panel("Success", "Login successful!", "green")
+        display_panel(
+            "Welcome Back",
+            f"[bold green]Welcome back, {username}! You can now manage your firewall rules.[/bold green]",
+            "green",
+        )
         manage_firewall_rules()
     else:
         display_panel("Error", "Invalid credentials. Please try again.", "red")
@@ -171,18 +175,28 @@ def main():
         "cyan",
     )
     while True:
-        display_panel("IntelWall", "[bold yellow]1. Login\n2. Signup\n3. Exit[/bold yellow]", "cyan")
-        console.print("[bold yellow]Enter action (1/2/3):[/bold yellow]", end="")
+        display_panel(
+            "IntelWall",
+            "[bold cyan]Are you an Existing User?[/bold cyan]\n"
+            "[bold yellow]1. Yes (Login)\n2. No (Signup)\n3. Exit[/bold yellow]",
+            "cyan",
+        )
+        console.print("[bold yellow]Please select an option (1/2/3):[/bold yellow]", end="")
         action = prompt("").strip()
         if action == "1":
             login()
         elif action == "2":
             signup()
+            display_panel(
+                "Welcome New User",
+                "[bold green]Thank you for signing up! You can now manage your firewall rules with IntelWall.[/bold green]",
+                "green",
+            )
         elif action == "3":
             display_panel("Goodbye", "[bold magenta]Thank you for using IntelWall![/bold magenta]", "magenta")
             break
         else:
-            console.print("[bold red]Invalid action. Please enter '1', '2', or '3'.[/bold red]")
+            console.print("[bold red]Invalid option. Please enter '1', '2', or '3'.[/bold red]")
 
 if __name__ == "__main__":
     main()
