@@ -12,6 +12,9 @@ console = Console()
 # Mock database for storing user data
 user_database = {"admin": {"username": "admin", "password": "admin123"}, "users": []}
 
+# Mock firewall rules database
+firewall_rules = {"chains": {}, "tables": {}}
+
 def display_panel(title, content, border_style="cyan"):
     """Display a panel with a title and content."""
     console.print(Panel(content, title=title, border_style=border_style))
@@ -24,6 +27,79 @@ def get_input_with_validation(prompt_text, validation_func, error_message, is_pa
         if validation_func(user_input):
             return user_input
         console.print(f"[bold red]{error_message}[/bold red]")
+
+def manage_firewall_rules():
+    """Manage firewall rules after authentication."""
+    while True:
+        display_panel(
+            "Firewall Rules Management",
+            "[bold yellow]1. Add Rule\n2. Delete Rule\n3. Modify Rule\n4. Review Rules\n5. Exit[/bold yellow]",
+            "cyan"
+        )
+        console.print("[bold yellow]Enter action (1/2/3/4/5):[/bold yellow]", end="")
+        action = prompt("").strip()
+        if action == "1":
+            add_firewall_rule()
+        elif action == "2":
+            delete_firewall_rule()
+        elif action == "3":
+            modify_firewall_rule()
+        elif action == "4":
+            review_firewall_rules()
+        elif action == "5":
+            display_panel("Exit", "[bold magenta]Returning to main menu...[/bold magenta]", "magenta")
+            break
+        else:
+            console.print("[bold red]Invalid action. Please enter '1', '2', '3', '4', or '5'.[/bold red]")
+
+def add_firewall_rule():
+    """Add a new firewall rule."""
+    chain = get_input_with_validation("Enter chain name:", lambda x: len(x) > 0, "Chain name cannot be empty.")
+    table = get_input_with_validation("Enter table name:", lambda x: len(x) > 0, "Table name cannot be empty.")
+    rule = get_input_with_validation("Enter rule details:", lambda x: len(x) > 0, "Rule details cannot be empty.")
+    if chain not in firewall_rules["chains"]:
+        firewall_rules["chains"][chain] = []
+    if table not in firewall_rules["tables"]:
+        firewall_rules["tables"][table] = []
+    firewall_rules["chains"][chain].append(rule)
+    firewall_rules["tables"][table].append(rule)
+    display_panel("Success", f"Rule added to chain '{chain}' and table '{table}'.", "green")
+
+def delete_firewall_rule():
+    """Delete an existing firewall rule."""
+    chain = get_input_with_validation("Enter chain name:", lambda x: x in firewall_rules["chains"], "Chain not found.")
+    table = get_input_with_validation("Enter table name:", lambda x: x in firewall_rules["tables"], "Table not found.")
+    rule = get_input_with_validation("Enter rule details to delete:", lambda x: x in firewall_rules["chains"][chain], "Rule not found in the specified chain.")
+    firewall_rules["chains"][chain].remove(rule)
+    firewall_rules["tables"][table].remove(rule)
+    display_panel("Success", f"Rule removed from chain '{chain}' and table '{table}'.", "green")
+
+def modify_firewall_rule():
+    """Modify an existing firewall rule."""
+    chain = get_input_with_validation("Enter chain name:", lambda x: x in firewall_rules["chains"], "Chain not found.")
+    table = get_input_with_validation("Enter table name:", lambda x: x in firewall_rules["tables"], "Table not found.")
+    old_rule = get_input_with_validation("Enter rule details to modify:", lambda x: x in firewall_rules["chains"][chain], "Rule not found in the specified chain.")
+    new_rule = get_input_with_validation("Enter new rule details:", lambda x: len(x) > 0, "New rule details cannot be empty.")
+    index = firewall_rules["chains"][chain].index(old_rule)
+    firewall_rules["chains"][chain][index] = new_rule
+    firewall_rules["tables"][table][index] = new_rule
+    display_panel("Success", f"Rule modified in chain '{chain}' and table '{table}'.", "green")
+
+def review_firewall_rules():
+    """Review all firewall rules."""
+    if not firewall_rules["chains"] and not firewall_rules["tables"]:
+        display_panel("No Rules", "No firewall rules found.", "yellow")
+        return
+    content = "[bold cyan]Firewall Rules:[/bold cyan]\n"
+    for chain, rules in firewall_rules["chains"].items():
+        content += f"\n[bold yellow]Chain: {chain}[/bold yellow]\n"
+        for rule in rules:
+            content += f"- {rule}\n"
+    for table, rules in firewall_rules["tables"].items():
+        content += f"\n[bold yellow]Table: {table}[/bold yellow]\n"
+        for rule in rules:
+            content += f"- {rule}\n"
+    display_panel("Firewall Rules", content, "cyan")
 
 def login():
     """Handle the login process."""
@@ -40,7 +116,11 @@ def login():
         valid = username == user_database["admin"]["username"] and password == user_database["admin"]["password"]
     else:
         valid = any(u for u in user_database["users"] if u["username"] == username and u["password"] == password)
-    display_panel("Success" if valid else "Error", "Login successful!" if valid else "Invalid credentials.", "green" if valid else "red")
+    if valid:
+        display_panel("Success", "Login successful!", "green")
+        manage_firewall_rules()
+    else:
+        display_panel("Error", "Invalid credentials. Please try again.", "red")
 
 def signup():
     """Handle the signup process."""
@@ -50,7 +130,7 @@ def signup():
     email = get_input_with_validation(
         "Email:",
         validator.email_validation,
-        "Invalid email format. Please ensure the email contains '@' and '.' and starts with a letter or digit.Enter again."
+        "Invalid email format. Please ensure the email contains '@' and '.' and starts with a letter or digit."
     )
     username = get_input_with_validation(
         "Username:",
@@ -76,6 +156,7 @@ def signup():
     user_details = user_auth.User_details()
     user_database["users"].append(user_details)
     display_panel("Success", "Signup successful! You can now log in.", "green")
+    manage_firewall_rules()
 
 def main():
     """Main function to display the interface."""
