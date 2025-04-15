@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from prompt_toolkit import prompt
 from rich.console import Console
 from rich.panel import Panel
