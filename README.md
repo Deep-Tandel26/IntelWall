@@ -4,6 +4,11 @@ IntelWall is an intelligent, context-aware platform for managing and deploying f
 
 IntelWall is not just a platform for creating and managing firewall rules easily; it is also an intelligent tool that generates actionable insights to help administrators develop more secure and effective firewall rules. Additionally, it is a hybrid tool designed to cater to both users and administrators, ensuring flexibility and ease of use for all stakeholders.
 
+## Key Features
+
+- **Add, Modify, and Delete Firewall Rules**: IntelWall allows administrators to seamlessly add, modify, and delete firewall rules for enhanced control over network traffic.
+- **Analyze Firewall Rule Changes**: IntelWall provides an intelligent analysis of the implications of proposed firewall rule changes, helping administrators make informed decisions.
+- **Push Changes Directly to the Firewall**: IntelWall enables administrators to push changes directly to the firewall, ensuring real-time updates and minimal downtime.
 - **Application Access Control**: IntelWall can identify and restrict the access of applications to external networks or hosts.
 - **Cross-Platform Compatibility**: IntelWall is a versatile and ergonomic tool compatible with Windows, Linux, and macOS.
 - **Application-Specific Rules**: IntelWall manages firewall rules for each application running on an endpoint individually.
