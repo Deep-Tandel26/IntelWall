@@ -1,28 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
 from ui_components import display_panel, get_input
-from collections import defaultdict
-# from simplepam import authenticate  # Commented out for now
-from Rules.Add.main import Add  # Corrected import for Add class from main.py
-
-# Mock firewall rules database
-firewall_rules = defaultdict(lambda: defaultdict(list))
+from Rules.Add.main import Add  # Importing the Add class from main.py
 
 # Available nftables table options
 NFTABLES_TABLES = ["filter", "nat", "mangle", "raw", "security"]
 
 def authenticate_user():
     """Authenticate the user using PAM (commented out for now)."""
-    # while True:
-    #     username = get_input("Enter your username:")
-    #     password = get_input("Enter your password:", is_password=True)
-    #     if authenticate(username, password):
-    #         display_panel("Authentication Successful", f"[bold green]Welcome, {username}![/bold green]", "green")
-    #         return username
-    #     else:
-    #         display_panel("Authentication Failed", "[bold red]Invalid username or password. Please try again.[/bold red]", "red")
     display_panel("Authentication", "[bold green]Authentication is currently disabled.[/bold green]", "green")
     return "user"
 
@@ -54,41 +40,27 @@ def manage_table(table_name):
         if choice == "1":
             display_panel(
                 "Add Chain",
-                f"Adding a new chain to the table '{table_name}'.\nPlease follow the prompts.",
+                f"Adding a new chain to the table '{table_name}'.\nPlease follow the [bold green]Instructions[/bold green].",
                 "cyan"
             )
-            chain_name = get_input("Enter the name of the chain:")
-            table_name = get_input("Enter the table name (e.g., 'filter', 'nat'):")
-            hook = get_input("Enter the hook (e.g., 'input', 'output', 'forward'):")
-            priority = get_input("Enter the priority (e.g., '0', '-1'):")
-            policy = get_input("Enter the policy (e.g., 'accept', 'drop'):")
-            add.add_chain(chain_name, table_name, hook, priority, policy)
+            output = add.add_chain()
+            display_panel("Add Chain Output", output, "green")
         elif choice == "2":
             display_panel(
                 "Add Rule",
                 f"Adding a new rule to the table '{table_name}'.\nPlease follow the prompts.",
                 "cyan"
             )
-            chain_name = get_input("Enter the chain name to add the rule to:")
-            if chain_name not in add.chains:
-                display_panel("Error", f"Chain '{chain_name}' does not exist. Please add the chain first.", "red")
-            else:
-                display_panel(
-                    "Rule Types",
-                    "Select the type of rule you want to add:\n"
-                    "[bold yellow]1. Basic Rules\n2. IP-Based Rules\n3. Port-Based Rules\n"
-                    "4. Logging and Monitoring Rules\n5. Stateful Rules\n6. Rate Limiting Rules\n7. Advanced Rules[/bold yellow]",
-                    "cyan"
-                )
-                rule_type = get_input("Enter the number corresponding to the rule type:")
-                add.add_rule(chain_name, rule_type)
+            output = add.add_rule()
+            display_panel("Add Rule Output", output, "green")
         elif choice == "3":
             display_panel(
                 "Display Chains and Rules",
                 f"Displaying all chains and rules in the table '{table_name}'.",
                 "cyan"
             )
-            add.display_chains_and_rules()
+            output = add.display_chains_and_rules()
+            display_panel("Chains and Rules", output, "cyan")
         elif choice == "4":
             display_panel("Exit", f"[bold magenta]Exiting table '{table_name}' management...[/bold magenta]", "magenta")
             break
