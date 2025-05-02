@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from ui_components import display_panel, get_input
-from Rules.Add.main import Add  # Importing the Add class from main.py
+from Rules.Add.main import Add
+from Rules.Modify.main import Modify
+from Rules.Delete.main import Delete
+from Rules.Review_and_Analyse.main import ReviewAndAnalyse
 
 # Available nftables table options
 NFTABLES_TABLES = ["filter", "nat", "mangle", "raw", "security"]
@@ -29,40 +32,118 @@ def choose_table():
 
 def manage_table(table_name):
     """Manage the selected table."""
-    add = Add()  # Create an instance of the Add class from main.py
+    chains = {}  # Initialize an empty dictionary to store chains and rules
+    add = Add()
+    modify = Modify(chains)
+    delete = Delete(chains)
+    review_and_analyse = ReviewAndAnalyse(chains)
+
     while True:
         display_panel(
             f"Managing Table: {table_name}",
-            "[bold yellow]1. Add Chain\n2. Add Rule\n3. Display Chains and Rules\n4. Exit[/bold yellow]",
+            "[bold yellow]1. Add Chains and Rules\n2. Delete Chains and Rules\n"
+            "3. Modify Chains and Rules\n4. Review and Analyse Policies , Chains and Rules\n5. Exit[/bold yellow]",
             "cyan"
         )
-        choice = get_input("Enter your choice (1/2/3/4):")
+        choice = get_input("Enter your choice (1-5):")
         if choice == "1":
-            display_panel(
-                "Add Chain",
-                f"Adding a new chain to the table '{table_name}'.\nPlease follow the [bold green]Instructions[/bold green].",
-                "cyan"
-            )
-            output = add.add_chain()
+            manage_add(add, table_name)
+        elif choice == "2":
+            manage_delete(delete, table_name)
+        elif choice == "3":
+            manage_modify(modify, table_name)
+        elif choice == "4":
+            manage_review_and_analyse(review_and_analyse, table_name)
+        elif choice == "5":
+            display_panel("Exit", f"[bold magenta]Exiting table '{table_name}' management...[/bold magenta]", "magenta")
+            break
+        else:
+            display_panel("Error", "Invalid choice. Please try again.", "red")
+
+def manage_add(add, table_name):
+    """Manage adding chains and rules."""
+    while True:
+        display_panel(
+            "Add Policies and Rules",
+            "[bold yellow]1. Add Chain\n2. Add Rule\n3. Back[/bold yellow]",
+            "cyan"
+        )
+        choice = get_input("Enter your choice (1-3):")
+        if choice == "1":
+            display_panel("Add Chain", f"Adding a new chain to the table [bold green]'{table_name}'[/bold green].", "cyan")
+            output = add.add_chain(table_name)
             display_panel("Add Chain Output", output, "green")
         elif choice == "2":
-            display_panel(
-                "Add Rule",
-                f"Adding a new rule to the table '{table_name}'.\nPlease follow the prompts.",
-                "cyan"
-            )
+            display_panel("Add Rule", f"Adding a new rule to the table [bold green]'{table_name}'[/bold green].", "cyan")
             output = add.add_rule()
             display_panel("Add Rule Output", output, "green")
         elif choice == "3":
-            display_panel(
-                "Display Chains and Rules",
-                f"Displaying all chains and rules in the table '{table_name}'.",
-                "cyan"
-            )
-            output = add.display_chains_and_rules()
-            display_panel("Chains and Rules", output, "cyan")
-        elif choice == "4":
-            display_panel("Exit", f"[bold magenta]Exiting table '{table_name}' management...[/bold magenta]", "magenta")
+            break
+        else:
+            display_panel("Error", "Invalid choice. Please try again.", "red")
+
+def manage_delete(delete, table_name):
+    """Manage deleting chains and rules."""
+    while True:
+        display_panel(
+            "Delete Policies and Rules",
+            "[bold yellow]1. Delete Chain\n2. Delete Rule\n3. Back[/bold yellow]",
+            "cyan"
+        )
+        choice = get_input("Enter your choice (1-3):")
+        if choice == "1":
+            display_panel("Delete Chain", f"Deleting a chain from the table '{table_name}'.", "cyan")
+            output = delete.delete_chain()
+            display_panel("Delete Chain Output", output, "green")
+        elif choice == "2":
+            display_panel("Delete Rule", f"Deleting a rule from the table '{table_name}'.", "cyan")
+            output = delete.delete_rule()
+            display_panel("Delete Rule Output", output, "green")
+        elif choice == "3":
+            break
+        else:
+            display_panel("Error", "Invalid choice. Please try again.", "red")
+
+def manage_modify(modify, table_name):
+    """Manage modifying chains and rules."""
+    while True:
+        display_panel(
+            "Modify Policies and Rules",
+            "[bold yellow]1. Modify Chain\n2. Modify Rule\n3. Back[/bold yellow]",
+            "cyan"
+        )
+        choice = get_input("Enter your choice (1-3):")
+        if choice == "1":
+            display_panel("Modify Chain", f"Modifying a chain in the table '{table_name}'.", "cyan")
+            output = modify.modify_chain()
+            display_panel("Modify Chain Output", output, "green")
+        elif choice == "2":
+            display_panel("Modify Rule", f"Modifying a rule in the table '{table_name}'.", "cyan")
+            output = modify.modify_rule()
+            display_panel("Modify Rule Output", output, "green")
+        elif choice == "3":
+            break
+        else:
+            display_panel("Error", "Invalid choice. Please try again.", "red")
+
+def manage_review_and_analyse(review_and_analyse, table_name):
+    """Manage reviewing and analyzing chains and rules."""
+    while True:
+        display_panel(
+            "Review and Analyse Policies and Rules",
+            "[bold yellow]1. Review Chains and Rules\n2. Analyze Chains and Rules\n3. Back[/bold yellow]",
+            "cyan"
+        )
+        choice = get_input("Enter your choice (1-3):")
+        if choice == "1":
+            display_panel("Review Chains and Rules", f"Reviewing chains and rules in the table '{table_name}'.", "cyan")
+            output = review_and_analyse.review_chains_and_rules()
+            display_panel("Review Chains and Rules Output", output, "cyan")
+        elif choice == "2":
+            display_panel("Analyze Chains and Rules", f"Analyzing chains and rules in the table '{table_name}'.", "cyan")
+            output = review_and_analyse.analyse_chains_and_rules()
+            display_panel("Analyze Chains and Rules Output", output, "cyan")
+        elif choice == "3":
             break
         else:
             display_panel("Error", "Invalid choice. Please try again.", "red")
