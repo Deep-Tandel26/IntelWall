@@ -11,11 +11,11 @@ class ReviewAndAnalyse:
     def review_chains_and_rules(self):
         """Review all chains and their rules."""
         if not self.chains:
-            return "No chains or rules found."
+            return "[bold red]No chains or rules found.[/bold red]"
 
         output = []
         for chain_name, chain_data in self.chains.items():
-            output.append(f"\nChain: {chain_name}")
+            output.append(f"\n[bold cyan]Chain: {chain_name}[/bold cyan]")
             output.append(f"  Table: {chain_data['table']}")
             output.append(f"  Hook: {chain_data['hook']}")
             output.append(f"  Priority: {chain_data['priority']}")
@@ -28,18 +28,18 @@ class ReviewAndAnalyse:
     def analyse_chains_and_rules(self):
         """Analyze chains and rules for potential issues or optimizations."""
         if not self.chains:
-            return "No chains or rules found to analyze."
+            return "[bold red]No chains or rules found to analyze.[/bold red]"
 
         output = []
         for chain_name, chain_data in self.chains.items():
-            output.append(f"\nAnalyzing Chain: {chain_name}")
+            output.append(f"\n[bold cyan]Analyzing Chain: {chain_name}[/bold cyan]")
             if chain_data["policy"] == "accept" and not chain_data["rules"]:
-                output.append(f"  [bold red]Warning:[/bold red] Chain '{chain_name}' has an 'accept' policy but no rules.")
+                output.append(f"[bold red]Warning:[/bold red] Chain '{chain_name}' has an 'accept' policy but no rules.")
             for rule in chain_data["rules"]:
                 if rule.get("type") == "ip" and rule.get("source") == "any" and rule.get("destination") == "any":
-                    output.append(f"  [bold yellow]Optimization:[/bold yellow] Rule '{rule}' in chain '{chain_name}' allows all traffic. Consider restricting it.")
+                    output.append(f"[bold yellow]Optimization:[/bold yellow] Rule '{rule}' in chain '{chain_name}' allows all traffic. Consider restricting it.")
                 if rule.get("type") == "port" and rule.get("protocol") == "tcp" and rule.get("dport") == "22":
-                    output.append(f"  [bold yellow]Optimization:[/bold yellow] Rule '{rule}' in chain '{chain_name}' allows SSH traffic. Ensure it's secured.")
+                    output.append(f"[bold yellow]Optimization:[/bold yellow] Rule '{rule}' in chain '{chain_name}' allows SSH traffic. Ensure it's secured.")
         return "\n".join(output)
 
 # Example usage
