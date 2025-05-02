@@ -10,23 +10,23 @@ class Delete:
 
     def delete_chain(self):
         """Delete an existing chain."""
-        display_panel("Delete Chain", "Please provide the details for the chain to delete.", "cyan")
-        chain_name = get_input("Enter the name of the chain to delete:")
+        display_panel("Delete Chain", "Enter the details of the chain to delete.", "cyan")
+        chain_name = get_input("Enter the name of the chain to delete: ")
         if chain_name in self.chains:
             del self.chains[chain_name]
-            return f"Chain '{chain_name}' deleted successfully."
+            return f"[bold green]Chain '{chain_name}' deleted successfully.[/bold green]"
         else:
-            return f"Chain '{chain_name}' does not exist."
+            return f"[bold red]Chain '{chain_name}' does not exist.[/bold red]"
 
     def delete_rule(self):
         """Delete a rule from an existing chain."""
-        display_panel("Delete Rule", "Please provide the details for the rule to delete.", "cyan")
-        chain_name = get_input("Enter the chain name to delete the rule from:")
+        display_panel("Delete Rule", "Enter the details of the rule to delete.", "cyan")
+        chain_name = get_input("Enter the chain name to delete the rule from: ")
         if chain_name not in self.chains:
-            return f"Chain '{chain_name}' does not exist."
+            return f"[bold red]Chain '{chain_name}' does not exist.[/bold red]"
 
         if not self.chains[chain_name]["rules"]:
-            return f"No rules found in chain '{chain_name}'."
+            return f"[bold red]No rules found in chain '{chain_name}'.[/bold red]"
 
         display_panel(
             "Rules in Chain",
@@ -34,21 +34,21 @@ class Delete:
             "\n".join(f"[bold yellow]{i + 1}. {rule}[/bold yellow]" for i, rule in enumerate(self.chains[chain_name]["rules"])),
             "cyan"
         )
-        rule_index = get_input("Enter the number corresponding to the rule to delete:")
+        rule_index = get_input("Enter the number corresponding to the rule to delete: ")
         if rule_index.isdigit() and 1 <= int(rule_index) <= len(self.chains[chain_name]["rules"]):
             rule = self.chains[chain_name]["rules"].pop(int(rule_index) - 1)
-            return f"Rule '{rule}' deleted successfully from chain '{chain_name}'."
+            return f"[bold green]Rule '{rule}' deleted successfully from chain '{chain_name}'.[/bold green]"
         else:
-            return "Invalid rule selection. Please try again."
+            return "[bold red]Invalid rule selection. Please try again.[/bold red]"
 
     def display_chains_and_rules(self):
         """Display all chains and their rules."""
         if not self.chains:
-            return "No chains or rules found."
+            return "[bold red]No chains or rules found.[/bold red]"
 
         output = []
         for chain_name, chain_data in self.chains.items():
-            output.append(f"\nChain: {chain_name}")
+            output.append(f"\n[bold cyan]Chain: {chain_name}[/bold cyan]")
             output.append(f"  Table: {chain_data['table']}")
             output.append(f"  Hook: {chain_data['hook']}")
             output.append(f"  Priority: {chain_data['priority']}")
