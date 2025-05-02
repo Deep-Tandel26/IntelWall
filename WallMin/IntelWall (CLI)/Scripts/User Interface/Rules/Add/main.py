@@ -4,11 +4,10 @@ class Add:
     def __init__(self):
         self.chains = {}  # Dictionary to store chains and their rules
 
-    def add_chain(self):
+    def add_chain(self , table_name = None):
         """Add a new chain."""
         display_panel("Add Chain", "Please provide the details for the new chain.", "cyan")
         chain_name = get_input("Enter the name of the chain:")
-        table_name = get_input("Enter the table name (e.g., 'filter', 'nat'):")
         hook = get_input("Enter the hook (e.g., 'input', 'output', 'forward'):")
         priority = get_input("Enter the priority (e.g., '0', '-1'):")
         policy = get_input("Enter the policy (e.g., 'accept', 'drop'):")
